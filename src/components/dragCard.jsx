@@ -2,9 +2,9 @@ import { useState } from "react";
 
 const cardDimensions = { width: 100, height: 30 };
 
-const DragCard = ({ id, offset }) => {
+const DragCard = ({ id, offset, index }) => {
   const [x, setX] = useState(offset.left);
-  const [y, setY] = useState(offset.top+id*30);
+  const [y, setY] = useState(offset.top + index * 30);
 
   const handleDragStart = (e) => {
     e.dataTransfer.setData("text", id);
@@ -15,9 +15,16 @@ const DragCard = ({ id, offset }) => {
   const handleDragEnd = (e) => {
     e.dataTransfer.clearData();
 
+    console.log(offset.left, offset.top);
+    console.log(e.clientX, e.clientY);
+    console.log(
+      ( e.clientX - offset.left - 0.5 * cardDimensions.width) + " "+
+      (e.clientY - offset.top - 0.5 * cardDimensions.height)
+    );
+
     e.currentTarget.style.opacity = 1;
-    setX(e.clientX - 0.5*cardDimensions.width);
-    setY(e.clientY - 0.5*cardDimensions.height);
+    setX(e.clientX - offset.left - 0.5 * cardDimensions.width);
+    setY(e.clientY - offset.top - 0.5 * cardDimensions.height);
   };
 
   return (
