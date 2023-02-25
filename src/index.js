@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { ItemsListProvider } from './contexts/itemsListContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ItemsListProvider>
+      <App />
+    </ItemsListProvider>
   </React.StrictMode>
 );
 
