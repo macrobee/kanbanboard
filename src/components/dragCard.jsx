@@ -20,7 +20,7 @@ const DragCard = ({ id, containerId, text }) => {
 
   return (
     <div
-      className="flex justify-start items-center border-1 border-slate-400 rounded-lg border-solid bg-slate-100 hover:bg-slate-300 p-2 border-box z-10 min-w-[125px] max-w-full min-h-[40px] text-ellipsis overflow-hidden shadow-sm"
+      className="flex justify-start items-center border-1 border-slate-400 rounded-lg border-solid bg-slate-100 hover:bg-slate-300 p-2 border-box z-10 min-w-[125px] max-w-full min-h-[40px] text-clip shadow-sm"
       draggable="true"
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}

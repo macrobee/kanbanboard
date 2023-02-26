@@ -24,7 +24,7 @@ const Garbage = () => {
       onDragOver={allowDrop}
       onDrop={handleDrop}
     >
-      <GarbageIcon width={50} height={50} />
+      <GarbageIcon width={30} height={30} />
     </div>
   );
 };
