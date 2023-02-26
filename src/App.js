@@ -10,7 +10,7 @@ function App() {
   const { currentItems } = useContext(ItemsListContext);
 
   return (
-    <div className="h-[100vh] flex flex-col gap-2 justify-between items-center bg-gradient-to-b from-green-400 via-blue-500 to-purple-500 overflow-scroll font-mono">
+    <div className="h-[100vh] w-auto flex flex-col gap-2 justify-between items-start md:items-center bg-gradient-to-b from-green-400 via-blue-500 to-purple-500 overflow-scroll font-mono">
       <Header text={"Kanban Board"} />
 
       <div className="grow w-auto flex p-2 gap-2 overflow-hidden">
