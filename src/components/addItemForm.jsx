@@ -21,17 +21,17 @@ const AddItemForm = ({ placeholderText, buttonText, container }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-1 border-rounded flex flex-wrap">
+    <form onSubmit={handleSubmit} className="border-rounded flex flex-wrap justify-between gap-2">
       <input
         type="text"
         placeholder={placeholderText}
         onChange={handleChange}
         value={newItem}
-        className="hover:bg-slate-200 px-2"
+        className="hover:bg-slate-300 px-2 shadow-inner"
       />
       <button
         type="submit"
-        className="px-4 py-1 flex justify-center items-center bg-orange-200 hover:bg-amber-400"
+        className="px-4 py-1 flex justify-center items-center bg-green-300 hover:bg-blue-500 shadow-sm rounded"
       >
         {buttonText}
       </button>

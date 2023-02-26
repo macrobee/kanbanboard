@@ -66,7 +66,8 @@ const deleteItemFromList = (itemLists, itemToDeleteId, container) => {
   const updatedList = itemLists[container].filter(
     (item) => item.id !== itemToDeleteId
   );
-  return updatedList;
+  const updatedLists = {...itemLists, [container]:updatedList}
+  return updatedLists;
 };
 
 export const ItemsListContext = createContext({

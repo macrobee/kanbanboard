@@ -27,17 +27,19 @@ const Container = ({ id: containerId }) => {
 
   return (
     <div
-      className="w-[300px] h-full border-2 rounded-lg border-solid border-slate-700 relative flex flex-col justify-between items-center"
+      className="w-[300px] h-full border-2 rounded-lg border-solid shadow-inner bg-slate-200 p-2 flex flex-col justify-between items-center"
       onDrop={handleDrop}
       onDragOver={allowDrop}
     >
       <div className="flex flex-col justify-start items-start w-full h-auto">
-        <h2 className="text-2xl mb-2">{containerId}</h2>
+        <h2 className="text-xl mb-2 font-bold px-2">{containerId}</h2>
 
-        {currentItems[containerId] &&
-          currentItems[containerId].map((item) => (
-            <DragCard key={item.id} id={item.id} containerId={containerId} text={item.text} />
-          ))}
+        <div className="flex flex-col justify-start align-start gap-2">
+            {currentItems[containerId] &&
+              currentItems[containerId].map((item) => (
+                <DragCard key={item.id} id={item.id} containerId={containerId} text={item.text} />
+              ))}
+        </div>
       </div>
       <AddItemForm
         placeholderText={"New item"}
