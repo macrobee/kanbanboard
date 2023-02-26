@@ -20,7 +20,7 @@ const Garbage = () => {
 
   return (
     <div
-      className="h-28 w-28 p-2 flex justify-center items-center bg-slate-200/50 hover:bg-slate-200/75 rounded-lg"
+      className="h-28 w-28 p-2 flex justify-center items-center bg-slate-200/50 hover:bg-slate-200/75 rounded-lg absolute right-2 bottom-2 z-20"
       onDragOver={allowDrop}
       onDrop={handleDrop}
     >
