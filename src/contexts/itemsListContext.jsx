@@ -6,7 +6,6 @@ const containerLists = {
     { text: "it's", id: "1" },
     { text: "me", id: "2" },
     { text: "hi", id: "3" },
-    ,
   ],
   "third container": [
     { text: "I'm", id: "4" },
