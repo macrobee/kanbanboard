@@ -36,7 +36,7 @@ const Container = ({ id: containerId }) => {
 
         {currentItems[containerId] &&
           currentItems[containerId].map((item) => (
-            <DragCard key={item.id} id={item.id} containerId={containerId} />
+            <DragCard key={item.id} id={item.id} containerId={containerId} text={item.text} />
           ))}
       </div>
       <AddItemForm

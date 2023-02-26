@@ -1,8 +1,5 @@
-import { useState } from "react";
 
-const cardDimensions = { width: 100, height: 30 };
-
-const DragCard = ({ id, containerId }) => {
+const DragCard = ({ id, containerId, text }) => {
 
   const handleDragStart = (e) => {
     e.dataTransfer.setData("cardId", id);
@@ -15,6 +12,7 @@ const DragCard = ({ id, containerId }) => {
 
   const handleDragEnd = (e) => {
     e.dataTransfer.clearData();
+
     e.currentTarget.style.opacity = 1;
     e.currentTarget.style.transform = "translate(0, 0)";
     e.currentTarget.style.boxShadow = "none";
@@ -22,12 +20,12 @@ const DragCard = ({ id, containerId }) => {
 
   return (
     <div
-      className="flex justify-center items-center border-2 border-slate-400 rounded-lg border-solid bg-slate-200 p-2 border-box z-10 w-[100px] h-[30px]"
+      className="flex justify-center items-center border-2 border-slate-400 rounded-lg border-solid bg-slate-200 p-2 border-box z-10 min-w-[125px] min-h-[40px]"
       draggable="true"
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      I am card {id}
+      {text}
     </div>
   );
 };

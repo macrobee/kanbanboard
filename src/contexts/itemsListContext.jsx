@@ -1,18 +1,18 @@
 import { useState, createContext } from "react";
 
 const containerLists = {
-  "first container": [],
-  "second container": [
-    { text: "it's", id: "1" },
-    { text: "me", id: "2" },
-    { text: "hi", id: "3" },
+  "To-do": [{ text: "Add additional features", id: "8" }],
+  "In progress": [
+    { text: "Style components to match intended layout", id: "7" },
   ],
-  "third container": [
-    { text: "I'm", id: "4" },
-    { text: "the", id: "5" },
-    { text: "problem", id: "6" },
-    { text: "it's", id: "7" },
-    { text: "me", id: "8" },
+  Complete: [
+    { text: "Identify core functionalities", id: "1" },
+    { text: "Design UI layout", id: "2" },
+    { text: "Initialize app", id: "3" },
+    { text: "Create context containing to-do items", id: "4" },
+    { text: "Create container and card components", id: "5" },
+    { text: "Add input component", id: "6" },
+    { text: "Deploy project to Github Pages", id:"9"},
   ],
 };
 
@@ -63,9 +63,11 @@ const addItemToList = (itemLists, newItem, targetContainer) => {
 };
 
 const deleteItemFromList = (itemLists, itemToDeleteId, container) => {
-  const updatedList = itemLists[container].filter((item)=>item.id!==itemToDeleteId);
+  const updatedList = itemLists[container].filter(
+    (item) => item.id !== itemToDeleteId
+  );
   return updatedList;
-}
+};
 
 export const ItemsListContext = createContext({
   currentItems: {},
@@ -111,17 +113,21 @@ export const ItemsListProvider = ({ children }) => {
     setCurrentItems(updatedItemLists);
   };
 
-  const removeItemFromContainer = (itemToRemoveId, container) =>{
-    const updatedItemLists = deleteItemFromList(currentItems, itemToRemoveId, container);
+  const removeItemFromContainer = (itemToRemoveId, container) => {
+    const updatedItemLists = deleteItemFromList(
+      currentItems,
+      itemToRemoveId,
+      container
+    );
     setCurrentItems(updatedItemLists);
-  }
-  
+  };
+
   const value = {
     currentItems,
     moveItemToNewContainer,
     moveItemToEnd,
     addItemToContainer,
-    removeItemFromContainer
+    removeItemFromContainer,
   };
 
   return (
