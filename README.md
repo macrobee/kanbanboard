@@ -21,3 +21,5 @@ Mobile responsiveness
 Editing existing tasks
 
 Persisting tasks between sessions
+
+Limits on the number of tasks that can be added in each container
