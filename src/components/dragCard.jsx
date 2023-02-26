@@ -9,7 +9,6 @@ const DragCard = ({ id, containerId }) => {
     e.dataTransfer.setData("originalContainerId",containerId);
 
     e.currentTarget.style.opacity = 0.4;
-    e.currentTarget.style.position = "absolute";
   };
 
   const handleDragEnd = (e) => {

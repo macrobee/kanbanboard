@@ -5,7 +5,7 @@ import { ItemsListContext } from "../contexts/itemsListContext";
 import DragCard from "./dragCard";
 
 const Container = ({ id: containerId }) => {
-  const { currentItems } = useContext(ItemsListContext);
+  const { currentItems, moveItemToNewContainer } = useContext(ItemsListContext);
 
   const thisContainer = useRef(null);
 
@@ -20,13 +20,20 @@ const Container = ({ id: containerId }) => {
   const handleDrop = (e) => {
     const cardToMove = e.dataTransfer.getData("cardId");
     const oldContainer = e.dataTransfer.getData("originalContainerId");
+    const newContainer = containerId;
+    moveItemToNewContainer(cardToMove, oldContainer, newContainer);
   };
 
+  const allowDrop = (e) => {
+    e.preventDefault();
+  };
+  
   return (
     <div
       className="w-[300px] h-full border-2 rounded-lg border-solid border-slate-700 relative"
       ref={thisContainer}
       onDrop={handleDrop}
+      onDragOver={allowDrop}
     >
       {currentItems[containerId] &&
         currentItems[containerId].map((item) => (

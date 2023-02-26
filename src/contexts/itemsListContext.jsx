@@ -16,15 +16,53 @@ const containerLists = {
   ],
 };
 
+const changeItemContainer = (
+  itemsLists,
+  itemToMoveId,
+  oldContainer,
+  newContainer
+) => {
+  const updatedOldList = itemsLists[oldContainer].filter(
+    (item) => item.id !== itemToMoveId
+  );
+  const itemToMove = itemsLists[oldContainer].find(
+    (item) => item.id === itemToMoveId
+  );
+  const updatedNewList = [...itemsLists[newContainer],itemToMove];
+
+  const updatedItemsLists = {
+    ...itemsLists,
+    [oldContainer]: updatedOldList,
+    [newContainer]: updatedNewList,
+  };
+
+  return updatedItemsLists;
+};
+
 export const ItemsListContext = createContext({
   currentItems: {},
   setCurrentItems: () => {},
+  moveItemToNewContainer: ()=>{}
 });
 
 export const ItemsListProvider = ({ children }) => {
   const [currentItems, setCurrentItems] = useState(containerLists);
 
-  const value = { currentItems };
+  const moveItemToNewContainer = (
+    itemToMoveId,
+    oldContainerId,
+    newContainerId
+  ) => {
+    const newCurrentItems = changeItemContainer(
+      currentItems,
+      itemToMoveId,
+      oldContainerId,
+      newContainerId
+    );
+    setCurrentItems(newCurrentItems);
+  };
+  
+  const value = { currentItems, moveItemToNewContainer };
 
   return (
     <ItemsListContext.Provider value={value}>
