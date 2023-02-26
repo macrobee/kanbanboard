@@ -11,8 +11,7 @@ const containerLists = {
     { text: "Initialize app", id: "3" },
     { text: "Create context containing to-do items", id: "4" },
     { text: "Create container and card components", id: "5" },
-    { text: "Add input component", id: "6" },
-    { text: "Deploy project to Github Pages", id:"9"},
+    { text: "Deploy project to Github Pages", id:"6"},
   ],
 };
 
