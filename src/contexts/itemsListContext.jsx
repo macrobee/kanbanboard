@@ -16,7 +16,7 @@ const containerLists = {
   ],
 };
 
-const changeItemContainer = (
+const changeItemList = (
   itemsLists,
   itemToMoveId,
   oldContainer,
@@ -28,7 +28,7 @@ const changeItemContainer = (
   const itemToMove = itemsLists[oldContainer].find(
     (item) => item.id === itemToMoveId
   );
-  const updatedNewList = [...itemsLists[newContainer],itemToMove];
+  const updatedNewList = [...itemsLists[newContainer], itemToMove];
 
   const updatedItemsLists = {
     ...itemsLists,
@@ -39,10 +39,41 @@ const changeItemContainer = (
   return updatedItemsLists;
 };
 
+const moveItemToEndOfList = (itemsLists, itemToMoveId, container) => {
+  const listWithItemRemoved = itemsLists[container].filter(
+    (item) => item.id !== itemToMoveId
+  );
+  const itemToMove = itemsLists[container].find(
+    (item) => item.id === itemToMoveId
+  );
+  const updatedNewList = [...listWithItemRemoved, itemToMove];
+
+  const updatedItemsLists = {
+    ...itemsLists,
+    [container]: updatedNewList,
+  };
+
+  return updatedItemsLists;
+};
+
+const addItemToList = (itemLists, newItem, targetContainer) => {
+  const updatedList = [...itemLists[targetContainer], newItem];
+  const updatedItemLists = { ...itemLists, [targetContainer]: updatedList };
+  return updatedItemLists;
+};
+
+const deleteItemFromList = (itemLists, itemToDeleteId, container) => {
+  const updatedList = itemLists[container].filter((item)=>item.id!==itemToDeleteId);
+  return updatedList;
+}
+
 export const ItemsListContext = createContext({
   currentItems: {},
   setCurrentItems: () => {},
-  moveItemToNewContainer: ()=>{}
+  moveItemToNewContainer: () => {},
+  moveItemToEnd: () => {},
+  addItemToContainer: () => {},
+  removeItemFromContainer: () => {},
 });
 
 export const ItemsListProvider = ({ children }) => {
@@ -53,7 +84,7 @@ export const ItemsListProvider = ({ children }) => {
     oldContainerId,
     newContainerId
   ) => {
-    const newCurrentItems = changeItemContainer(
+    const newCurrentItems = changeItemList(
       currentItems,
       itemToMoveId,
       oldContainerId,
@@ -61,8 +92,37 @@ export const ItemsListProvider = ({ children }) => {
     );
     setCurrentItems(newCurrentItems);
   };
+
+  const moveItemToEnd = (itemToMoveId, containerId) => {
+    const updatedList = moveItemToEndOfList(
+      currentItems,
+      itemToMoveId,
+      containerId
+    );
+    setCurrentItems(updatedList);
+  };
+
+  const addItemToContainer = (itemToAdd, targetContainer) => {
+    const updatedItemLists = addItemToList(
+      currentItems,
+      itemToAdd,
+      targetContainer
+    );
+    setCurrentItems(updatedItemLists);
+  };
+
+  const removeItemFromContainer = (itemToRemoveId, container) =>{
+    const updatedItemLists = deleteItemFromList(currentItems, itemToRemoveId, container);
+    setCurrentItems(updatedItemLists);
+  }
   
-  const value = { currentItems, moveItemToNewContainer };
+  const value = {
+    currentItems,
+    moveItemToNewContainer,
+    moveItemToEnd,
+    addItemToContainer,
+    removeItemFromContainer
+  };
 
   return (
     <ItemsListContext.Provider value={value}>
