@@ -20,6 +20,8 @@ Mobile responsiveness for layout
 
 Editing existing tasks
 
+Adding additional category/containers
+
 Persisting tasks between sessions (LocalStorage or cookies)
 
 Limits on the number of tasks that can be added in each container
