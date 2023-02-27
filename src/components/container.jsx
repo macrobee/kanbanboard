@@ -34,7 +34,7 @@ const Container = ({ id: containerId }) => {
       <div className="flex flex-col justify-start items-start w-full h-auto">
         <h2 className="text-xl mb-2 font-bold px-2">{containerId}</h2>
 
-        <div className="flex flex-col justify-start align-start gap-2">
+        <div className="flex flex-col justify-start align-start gap-2 w-full">
             {currentItems[containerId] &&
               currentItems[containerId].map((item) => (
                 <DragCard key={item.id} id={item.id} containerId={containerId} text={item.text} />
